@@ -1,15 +1,3 @@
-# resource "azurerm_storage_account" "websta" {
-#   name                     = "${local.storage_account_name}"
-#   resource_group_name      = "${var.resource_group_name}"
-#   location                 = "${var.location}"
-#   account_tier             = "Standard"
-#   account_replication_type = "${var.account_replication_type}"
-#   enable_blob_encryption   = "true"
-#   enable_file_encryption   = "true"
-
-#   tags = "${merge(var.tags, map("environment", var.environment), map("release", var.release))}"
-# }
-
 resource "azurerm_app_service_plan" "serviceplan" {
   name                = "${local.app_service_plan_name}"
   location            = "${var.location}"
@@ -36,10 +24,9 @@ resource "azurerm_app_service" "webapp" {
   site_config {
     always_on = true
     ip_restriction {
-      ip_address = "${var.gateway_ip}"
+      ip_address = "${var.restrict_ip}"
+      subnet_mask = "${var.restrict_subnet_mask}"
       }
-    # php_version = "off"
-    # java_version = "off"
     ftps_state = "FtpsOnly" 
   }
 

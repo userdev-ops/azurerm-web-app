@@ -1,3 +1,4 @@
+
 variable "resource_group_name" {
   description = "The resource group where the resources should be created."
 }
@@ -11,15 +12,15 @@ variable "web_app_name" {
   description = "The name for the function app. Without environment naming."
 }
 
-variable "gateway_ip" {
-  description = "The ip address to the gateway protecting the web application"
+variable "restrict_ip" {
+  default = "0.0.0.0"
+  description = "The ipv4 address you want to allow accessing the web app"
 }
 
-variable "account_replication_type" {
-  default = "LRS"
-  description = "The Storage Account replication type. See azurerm_storage_account module for posible values."
+variable "restrict_subnet_mask" {
+  default = "0.0.0.0"
+  description = "The subnet mask for the ipv4 address you want to allow accessing the web app, defaults to 0.0.0.0 (every ip allowed)"
 }
-
 
 variable "app_settings" {
   default     = {}

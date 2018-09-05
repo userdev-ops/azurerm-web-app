@@ -25,7 +25,6 @@ module "Web_app" {
   resource_group_name       = "${azurerm_resource_group.image_resizer.name}"
   location                  = "${azurerm_resource_group.image_resizer.location}"
   environment               = "lab"
-  webapp_version            = "beta"
   release                   = "release 2018-07-21.001"
   account_replication_type  = "LRS"
   gateway_ip                = "1.2.3.4"
@@ -52,8 +51,11 @@ The azure datacenter location where the resources should be created. Defaults to
 ### web_app_name
 The name for the Web app. Without environment naming.
 
-### gateway_ip
-The ip address to the gateway protecting the web application.
+### restrict_ip
+The ipv4 address you want to allow accessing the web app
+
+### restrict_subnet_mask
+The subnet mask for the ipv4 address you want to allow accessing the web app, defaults to 0.0.0.0 (every ip allowed)
 
 ### account_replication_type
 The Storage Account replication type. See azurerm_storage_account module for posible values.
