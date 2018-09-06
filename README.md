@@ -2,7 +2,7 @@
 
 ## Create a Web App in Azure
 
-This terraform module deploys a Web App on dedicated app service plan, with autoscaling, in Azure. This configuration expects a connection gateway in front and uses ip restriction to only accept incoming traffic from the ip address specified in the variable "gateway_ip".
+This terraform module deploys a Web App on dedicated app service plan, with autoscaling, in Azure. 
 
 The following resources will be created by the module:
 - App service plan (S1)
@@ -26,8 +26,8 @@ module "Web_app" {
   location                  = "${azurerm_resource_group.image_resizer.location}"
   environment               = "lab"
   release                   = "release 2018-07-21.001"
-  account_replication_type  = "LRS"
-  gateway_ip                = "1.2.3.4"
+  restrict_ip               = "1.2.3.4"
+  restrict_subnet_mask      = "255.255.255.0"
   
   app_settings {
   }
