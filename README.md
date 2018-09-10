@@ -20,8 +20,8 @@ resource "azurerm_resource_group" "image_resizer" {
 }
 
 module "Web_app" {
-  source                    = "innovationnorway/Web-app/azurerm"
-  web_app_name              = "image-resizer-func"
+  source                    = "innovationnorway/web-app/azurerm"
+  version                   = "0.1.0-pre"
   resource_group_name       = "${azurerm_resource_group.image_resizer.name}"
   location                  = "${azurerm_resource_group.image_resizer.location}"
   environment               = "lab"
@@ -82,3 +82,6 @@ The MSI identities set on the web app. Returns a list of identities.
 
 ### identity_tenant_id
 The MSI identity tenant id set on the web app.
+
+### webapp_name
+The name of the created web app.
