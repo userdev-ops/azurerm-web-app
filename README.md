@@ -22,6 +22,7 @@ resource "azurerm_resource_group" "image_resizer" {
 module "Web_app" {
   source                    = "innovationnorway/web-app/azurerm"
   version                   = "0.1.0-pre"
+  web_app_name              = "image-resizer-web"
   resource_group_name       = "${azurerm_resource_group.image_resizer.name}"
   location                  = "${azurerm_resource_group.image_resizer.location}"
   environment               = "lab"
