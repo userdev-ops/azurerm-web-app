@@ -86,3 +86,9 @@ The MSI identity tenant id set on the web app.
 
 ### webapp_name
 The name of the created web app.
+
+### webapp_serviceplan_name
+The name of the created web app service plan.
+
+### webapp_serviceplan_id
+The id of the created web app service plan.
