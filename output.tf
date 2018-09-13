@@ -12,3 +12,8 @@ output "webapp_name" {
   description = "The name of the created web app."
   value = "${azurerm_app_service.webapp.name}"
 }
+
+output "webapp_serviceplan_name" {
+  description = "The name of the created web app service plan."
+  value = "${azurerm_app_service_plan.serviceplan.name}"
+}
