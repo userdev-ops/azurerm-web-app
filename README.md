@@ -92,3 +92,6 @@ The name of the created web app service plan.
 
 ### webapp_serviceplan_id
 The id of the created web app service plan.
+
+### hostname
+The Hostname associated with the Web App - such as mysite.azurewebsites.net.

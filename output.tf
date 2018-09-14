@@ -22,3 +22,8 @@ output "webapp_serviceplan_id" {
   description = "The id of the created web app service plan."
   value = "${azurerm_app_service_plan.serviceplan.id}"
 }
+
+output "hostname" {
+  description = "The Hostname associated with the Web App - such as mysite.azurewebsites.net"
+  value = "${azurerm_app_service.webapp.default_site_hostname}"
+}
