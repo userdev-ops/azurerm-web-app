@@ -52,15 +52,17 @@ The azure datacenter location where the resources should be created. Defaults to
 ### web_app_name
 The name for the Web app. Without environment naming.
 
+### min_tls_version
+Minimum version of TLS the web app should support.
+
 ### restrict_ip
 The ipv4 address you want to allow accessing the web app
 
 ### restrict_subnet_mask
 The subnet mask for the ipv4 address you want to allow accessing the web app, defaults to 0.0.0.0 (every ip allowed)
 
-### account_replication_type
-The Storage Account replication type. See azurerm_storage_account module for posible values.
-Defaults to "LRS"
+### ftps_state
+Which form for ftp the web app file system should support. If not strictly nesasery to use it, leave it disabled, and onlyftps if needed.
 
 ### app_settings
 Application settings to insert on creating the Web app. Following updates will be ignored, and has to be set manually. Updates done on application deploy or in portal will not affect terraform state file.
