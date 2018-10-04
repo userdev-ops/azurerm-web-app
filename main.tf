@@ -12,22 +12,26 @@ resource "azurerm_app_service_plan" "serviceplan" {
 }
 
 resource "azurerm_app_service" "webapp" {
-  name                      = "${local.web_app_name}"
-  location                  = "${var.location}"
-  resource_group_name       = "${var.resource_group_name}"
-  app_service_plan_id       = "${azurerm_app_service_plan.serviceplan.id}"
-  https_only                = true
-  client_affinity_enabled   = false
+  name                    = "${local.web_app_name}"
+  location                = "${var.location}"
+  resource_group_name     = "${var.resource_group_name}"
+  app_service_plan_id     = "${azurerm_app_service_plan.serviceplan.id}"
+  https_only              = true
+  client_affinity_enabled = false
 
   tags = "${merge(var.tags, map("environment", var.environment), map("release", var.release))}"
 
   site_config {
-    always_on = true
+    always_on       = true
+    http2_enabled   = true
+    min_tls_version = "${var.min_tls_version}"
+
     ip_restriction {
-      ip_address = "${var.restrict_ip}"
+      ip_address  = "${var.restrict_ip}"
       subnet_mask = "${var.restrict_subnet_mask}"
-      }
-    ftps_state = "FtpsOnly" 
+    }
+
+    ftps_state = "${var.ftps_state}"
   }
 
   identity {

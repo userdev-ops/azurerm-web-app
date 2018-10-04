@@ -12,6 +12,11 @@ variable "web_app_name" {
   description = "The name for the function app. Without environment naming."
 }
 
+variable "min_tls_version" {
+  description = "Minimum version of TLS the web app should support."
+  default = "1.2"
+}
+
 variable "restrict_ip" {
   default = "0.0.0.0"
   description = "The ipv4 address you want to allow accessing the web app"
@@ -20,6 +25,11 @@ variable "restrict_ip" {
 variable "restrict_subnet_mask" {
   default = "0.0.0.0"
   description = "The subnet mask for the ipv4 address you want to allow accessing the web app, defaults to 0.0.0.0 (every ip allowed)"
+}
+
+variable "ftps_state" {
+  description = "Which form for ftp the web app file system should support. If not strictly nesasery to use it, leave it disabled, and onlyftps if needed."
+  default = "Disabled"
 }
 
 variable "app_settings" {
