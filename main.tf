@@ -4,8 +4,8 @@ resource "azurerm_app_service_plan" "serviceplan" {
   resource_group_name = "${var.resource_group_name}"
 
   sku {
-    tier = "Standard"
-    size = "S1"
+    tier = "${var.sku_tier}"
+    size = "${var.sku_size}"
   }
 
   tags = "${merge(var.tags, map("environment", var.environment), map("release", var.release))}"
@@ -55,8 +55,8 @@ resource "azurerm_autoscale_setting" "app_service_auto_scale" {
     name = "Scale on CPU usage"
 
     capacity {
-      default = 1
-      minimum = 1
+      default = "${var.default_autoscale_instances}"
+      minimum = "${var.default_autoscale_instances}"
       maximum = "${azurerm_app_service_plan.serviceplan.maximum_number_of_workers}"
     }
 
