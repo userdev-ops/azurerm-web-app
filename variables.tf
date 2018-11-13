@@ -12,6 +12,21 @@ variable "web_app_name" {
   description = "The name for the function app. Without environment naming."
 }
 
+variable "sku_tier" {
+  description = "Which tier the app service plan will have."
+  default = "Standard"
+}
+
+variable "sku_size" {
+  description = "Which size the app service plan tier will have."
+  default = "S1"
+}
+
+variable "default_autoscale_instances" {
+  description = "Default numbers of instances which should stay in the auto scaling."
+  default = 1 
+}
+
 variable "min_tls_version" {
   description = "Minimum version of TLS the web app should support."
   default = "1.2"
