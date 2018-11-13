@@ -27,3 +27,7 @@ output "hostname" {
   description = "The Hostname associated with the Web App - such as mysite.azurewebsites.net"
   value = "${azurerm_app_service.webapp.default_site_hostname}"
 }
+
+output "outbound_ip_addresses" {
+  value = "${azurerm_app_service.webapp.outbound_ip_addresses}"
+}
