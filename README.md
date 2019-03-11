@@ -80,7 +80,7 @@ The release the deploy is based on
 
 ## Outputs
 
-### identity
+### identity_principal_id
 The MSI identities set on the web app. Returns a list of identities.
 
 ### identity_tenant_id
