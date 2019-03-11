@@ -45,7 +45,7 @@ resource "azurerm_app_service" "webapp" {
   }
 }
 
-resource "azurerm_autoscale_setting" "app_service_auto_scale" {
+resource "azurerm_monitor_autoscale_setting" "app_service_auto_scale" {
   name                = "${local.autoscale_settings_name}"
   resource_group_name = "${var.resource_group_name}"
   location            = "${var.location}"
