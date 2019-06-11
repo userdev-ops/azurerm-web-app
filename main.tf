@@ -41,7 +41,7 @@ resource "azurerm_app_service" "webapp" {
   app_settings = "${var.app_settings}"
 
   lifecycle {
-    ignore_changes = ["app_settings"]
+    ignore_changes = ["app_settings", "identity"]
   }
 }
 
