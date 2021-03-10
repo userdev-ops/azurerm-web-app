@@ -22,6 +22,11 @@ module "web_app" {
   plan = {
     sku_size = "S1"
   }
+
+  ip_restrictions = [
+    "192.168.2.56/32",
+    "192.168.2.57/32",
+  ]
 }
 
 data "azurerm_app_service" "test" {
@@ -29,13 +34,6 @@ data "azurerm_app_service" "test" {
   resource_group_name = azurerm_resource_group.test.name
 }
 
-module "test_assertions" {
-  source = "innovationnorway/assertions/test"
-  equals = [
-    {
-      name = "has expected runtime"
-      got  = data.azurerm_app_service.test.site_config.0.linux_fx_version
-      want = "DOTNETCORE|2.2"
-    }
-  ]
+output "app_service" {
+  value = data.azurerm_app_service.test
 }

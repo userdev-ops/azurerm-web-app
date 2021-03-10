@@ -225,13 +225,6 @@ locals {
     local.node_default_version
   )
 
-  ip_restrictions = [
-    for prefix in var.ip_restrictions : {
-      ip_address  = split("/", prefix)[0]
-      subnet_mask = cidrnetmask(prefix)
-    }
-  ]
-
   key_vault_secrets = [
     for name, value in var.secure_app_settings : {
       name  = replace(name, "/[^a-zA-Z0-9-]/", "-")
