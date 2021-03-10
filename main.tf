@@ -42,7 +42,6 @@ resource "azurerm_app_service" "main" {
   site_config {
     always_on                 = local.always_on
     http2_enabled             = var.http2_enabled
-    ip_restriction            = local.ip_restrictions
     ftps_state                = var.ftps_state
     min_tls_version           = var.min_tls_version
     use_32_bit_worker_process = local.use_32_bit_worker_process
@@ -52,6 +51,15 @@ resource "azurerm_app_service" "main" {
     python_version           = local.python_version
 
     linux_fx_version = local.linux_fx_version
+
+    dynamic "ip_restriction" {
+      for_each = toset(var.ip_restrictions)
+
+      content {
+        ip_address = ip_restriction.key
+      }
+    }
+
   }
 
   app_settings = local.app_settings
@@ -94,7 +102,7 @@ resource "azurerm_app_service" "main" {
     for_each = local.storage_mounts
     iterator = s
 
-     content {
+    content {
       name         = s.value.name
       type         = s.value.share_name != "" ? "AzureFiles" : "AzureBlob"
       account_name = s.value.account_name
